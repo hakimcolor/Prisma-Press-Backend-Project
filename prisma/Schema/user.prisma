@@ -9,4 +9,6 @@ model User {
   // updateAt     DateTime     @updatedAt
   updateAt     DateTime     @updatedAt
   profileID    Profile?
+
+  @@map("users")
 }
