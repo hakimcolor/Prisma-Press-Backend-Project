@@ -11,7 +11,7 @@ async function main() {
     console.log('connected to the database successfully');
 
     app.listen(PORT, () => {
-      console.log(`server is runing port on ${PORT}`);
+      console.log(`server is runing port onssss ${PORT}`);
     });
   } catch (error) {
     console.error('error ', error);
