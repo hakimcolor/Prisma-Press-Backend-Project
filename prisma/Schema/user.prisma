@@ -10,5 +10,5 @@ model User {
   updateAt     DateTime     @updatedAt
   profileID    Profile?
 
-  @@map("users")
+ 
 }
