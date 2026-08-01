@@ -24,8 +24,8 @@ app.get('/', async (req: Request, res: Response) => {
 //create a User
 app.post('/api/users/register', async (req: Request, res: Response) => {
   const { name, email, password, profilePhoto } = req.body;
-  const isUserExist = await prisma.user.findMany({
-    where: { email },
+  // const isUserExist = await prisma.user.findMany({
+  //   where: { email },
   });
 
   if (isUserExist) {
