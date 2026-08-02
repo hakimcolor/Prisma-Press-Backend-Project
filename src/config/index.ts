@@ -14,5 +14,5 @@ export default {
 
   jwt_access_expires_in: process.env.JWT_ACCESS_EXPIRES,
 
-//   jwt_refresh_expires_in: process.env.JWT_REFESH_EXPIRES,
-// };
+  jwt_refresh_expires_in: process.env.JWT_REFESH_EXPIRES,
+};
