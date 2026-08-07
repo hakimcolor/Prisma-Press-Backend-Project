@@ -1,18 +1,5 @@
-node_modules
-<<<<<<< HEAD
-dist
+node_modules/
+dist/
+.env
 
 /generated/prisma
-.env
-.agents
-.claude
-.windsurf
-generated
-=======
-generated
-dist
-.windsurf
-.claude
-.agents
-.env
->>>>>>> 0a85fe6 (Update project structure and remove .env)
