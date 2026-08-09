@@ -1,9 +1,8 @@
-import app from './app';
 import 'dotenv/config';
+import app from './app';
 import config from './config';
 
-// const PORT = config.port;
-const PORT = process.env.PORT;
+const PORT = config.port;
 
 async function main() {
   try {
@@ -14,4 +13,5 @@ async function main() {
     console.error('Server error:', error);
   }
 }
+
 main();
