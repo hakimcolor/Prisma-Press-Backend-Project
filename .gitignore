@@ -4,3 +4,4 @@ dist/
 /generated/prisma
 config.bat
 .env
+generated 
