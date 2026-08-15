@@ -1,9 +1,8 @@
+import app from './app';
+
 async function main() {
   try {
-    
-  } catch {
-    
-  }
-  
+    app.listen();
+  } catch (error) {}
 }
-main()
+main();
