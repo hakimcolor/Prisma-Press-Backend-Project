@@ -44,13 +44,19 @@ app.post('/api/users/register', async (req: Request, res: Response) => {
   const user = await prisma.user.findUnique({
     where: {
       id: Createdusers.id,
-    email:Createdusers.email||email
-  }
-})
-
+      email: Createdusers.email || email,
+    },
+    // password is omitted from the response for security reasons, and profile information is included
+    omit: { password: true },
+    // profile information is included in the response
+    include: { profile: true },
+  });
 
   res.status(httpsStatus.CREATED).json({
-    message: 'User registered successfully',
+    success: true,
+    statusbar: httpsStatus.CREATED,
+    message: 'user created successfully',
+    data: { user },
   });
 });
 export default app;
