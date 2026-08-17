@@ -5,7 +5,8 @@ import config from './config';
 import httpsStatus from 'http-status-codes';
 import { prisma } from './lib/prisma';
 import bcrypt from 'bcrypt';
-import { userRoute } from './modules/user.route';
+import { userRoute } from './modules/user/user.route';
+import { authRouter } from './modules/auth/auth.routes';
 
 const app: Application = express();
 //medilware
@@ -23,11 +24,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('your server is runing good and well ');
 });
 
-
-app.use('/api/users/register',userRoute);
-
-
-
+app.use('/api/users/register', userRoute);
+app.use('/api/auth/login',authRouter)
 // app.post('/api/users/register', async (req: Request, res: Response) => {
 //   const { name, email, password, profilePhoto } = req.body;
 //   const isUserExist = await prisma.user.findUnique({ where: { email } });
@@ -47,7 +45,6 @@ app.use('/api/users/register',userRoute);
 //       profilePhoto,
 //     },
 //   });
-
 
 //   const user = await prisma.user.findUnique({
 //     where: {

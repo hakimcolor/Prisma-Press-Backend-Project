@@ -2,8 +2,8 @@ import httpsStatus from 'http-status-codes';
 
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { userService } from './user.service';
-import { catchAsync } from '../utils/catchAsync';
-import { sendResponse } from '../utils/sendResponse';
+import { catchAsync } from '../../utils/catchAsync';
+import { sendResponse } from '../../utils/sendResponse';
 
 // const createUser = async (req: Request, res: Response) => {
 //   try {

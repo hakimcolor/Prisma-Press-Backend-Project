@@ -1,11 +1,11 @@
-import { Payload } from './../../generated/prisma/internal/prismaNamespace';
-import { prisma } from '../lib/prisma';
+import { Payload } from '../../../generated/prisma/internal/prismaNamespace';
+import { prisma } from '../../lib/prisma';
 import bcrypt from 'bcrypt';
-import config from '../config';
+import config from '../../config';
 
 const createuserintoDB = async (payload: any) => {
   const { name, email, password, profilePhoto } = payload;
-  
+
   const isUserExist = await prisma.user.findUnique({ where: { email } });
   if (isUserExist) {
     throw new Error('User already exists');
