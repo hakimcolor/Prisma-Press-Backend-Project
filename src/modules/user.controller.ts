@@ -1,11 +1,9 @@
-
-import httpsStatus, { StatusCodes } from 'http-status-codes';
+import httpsStatus from 'http-status-codes';
 
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { userService } from './user.service';
 import { catchAsync } from '../utils/catchAsync';
-
-
+import { sendResponse } from '../utils/sendResponse';
 
 // const createUser = async (req: Request, res: Response) => {
 //   try {
@@ -30,10 +28,16 @@ const createUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const paylod = req.body;
     const user = await userService.createuserintoDB(paylod);
-    res.status(httpsStatus.CREATED).json({
+    // res.status(httpsStatus.CREATED).json({
+    //   success: true,
+    //   StatusCodes: httpsStatus.CREATED,
+    //   Message: 'user registerd successfully ',
+    //   data: { user },
+    // });
+    sendResponse(res, {
       success: true,
       StatusCodes: httpsStatus.CREATED,
-      Message: 'user registerd successfully ',
+      Message: 'user registerd successfully',
       data: { user },
     });
   }
