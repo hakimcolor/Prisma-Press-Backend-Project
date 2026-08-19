@@ -31,7 +31,7 @@ const createuserintoDB = async (payload: any) => {
     },
   //password omit .. dot send password on ui
     omit: { password: true },
-    // profile information is included in the response
+    //show user with her profile 
     include: { profile: true },
   });
   return user;
