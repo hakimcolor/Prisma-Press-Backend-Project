@@ -29,7 +29,7 @@ const createuserintoDB = async (payload: any) => {
       id: Createdusers.id,
       email: Createdusers.email || email,
     },
-    // password is omitted from the response for security reasons, and profile information is included
+  //password omit .. dot send password on ui
     omit: { password: true },
     // profile information is included in the response
     include: { profile: true },
