@@ -27,7 +27,7 @@ const createuserintoDB = async (payload: any) => {
   const user = await prisma.user.findUnique({
     where: {
       id: Createdusers.id,
-      email: Createdusers.email || email,
+      email: Createdusers.email 
     },
   //password omit .. dot send password on ui
     omit: { password: true },
