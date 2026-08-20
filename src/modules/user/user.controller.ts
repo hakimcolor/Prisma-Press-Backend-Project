@@ -27,7 +27,7 @@ import { sendResponse } from '../../utils/sendResponse';
 const createUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const paylod = req.body;
-    const user = await userService.createuserintoDB(paylod);
+    const profile = await userService.createuserintoDB(paylod);
     // res.status(httpsStatus.CREATED).json({
     //   success: true,
     //   StatusCodes: httpsStatus.CREATED,
@@ -38,7 +38,7 @@ const createUser = catchAsync(
       success: true,
       StatusCodes: httpsStatus.CREATED,
       Message: 'user registerd successfully',
-      data: { user },
+      data: { profile },
     });
   }
 );
