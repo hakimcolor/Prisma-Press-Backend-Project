@@ -1,5 +1,6 @@
 import config from '../../config';
 import { prisma } from '../../lib/prisma';
+import { jutUtils } from '../../utils/jwt';
 import { ILoginuser } from './auth.interface';
 import bcrypt from 'bcrypt';
 import jwt, { SignOptions } from 'jsonwebtoken';
@@ -17,9 +18,16 @@ const loginUser = async (paylod: ILoginuser) => {
     email: user.email,
     role: user.role,
   };
-  const accessToken = jwt.sign(jwtpayload, config.jwt_access_token_secret, {
-    expiresIn: config.jwt_access_token_expiration,
-  } as SignOptions);
+  // const accessToken = jwt.sign(jwtpayload, config.jwt_access_token_secret, {
+  //   expiresIn: config.jwt_access_token_expiration,
+  // } as SignOptions);
+  const accessToken = jutUtils.createToken(
+    jwtpayload,
+    config.jwt_access_token_secret,
+    config.jwt_access_token_expiration as SignOptions
+  )
+  
+  
   const refreshToken = jwt.sign(jwtpayload, config.jwt_refresh_token_secret, {
     expiresIn: config.jwt_refresh_token_expiration,
   } as SignOptions);
