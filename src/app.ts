@@ -24,9 +24,9 @@ app.get('/', (req: Request, res: Response) => {
   res.send('your server is runing good and well ');
 });
 // for register user
-app.use('/api/users/register', userRoute);
+app.use('/api/users', userRoute);
 // login user
-app.use('/api/auth/login', authRouter)
+app.use('/api/auth', authRouter)
 
 // loging user profile 
 // app.post('/api/users/register', async (req: Request, res: Response) => {
