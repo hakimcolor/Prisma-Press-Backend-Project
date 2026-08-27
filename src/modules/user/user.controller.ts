@@ -43,7 +43,10 @@ const createUser = catchAsync(
   }
 );
 const getMyprofile=catchAsync(
-  async (req: Request, res: Response, next: NextFunction) =>{})
+  async (req: Request, res: Response, next: NextFunction) => {
+    
+    res.send('get my profile is ok ...')
+  })
 
 
 export const userController = { createUser, getMyprofile };
