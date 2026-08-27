@@ -42,4 +42,8 @@ const createUser = catchAsync(
     });
   }
 );
-export const userController = { createUser };
+const getMyprofile=catchAsync(
+  async (req: Request, res: Response, next: NextFunction) =>{})
+
+
+export const userController = { createUser, getMyprofile };
