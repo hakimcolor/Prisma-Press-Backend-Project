@@ -26,7 +26,9 @@ app.get('/', (req: Request, res: Response) => {
 // for register user
 app.use('/api/users/register', userRoute);
 // login user
-app.use('/api/auth/login',authRouter)
+app.use('/api/auth/login', authRouter)
+
+// loging user profile 
 // app.post('/api/users/register', async (req: Request, res: Response) => {
 //   const { name, email, password, profilePhoto } = req.body;
 //   const isUserExist = await prisma.user.findUnique({ where: { email } });

@@ -37,6 +37,10 @@ const createuserintoDB = async (payload: any) => {
   return user;
 };
 
+const getMyprofileFromDB=async()=> {
+  
+}
 export const userService = {
   createuserintoDB,
+  getMyprofileFromDB
 };
