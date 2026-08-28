@@ -53,10 +53,17 @@ const getMyprofile=catchAsync(
     console.log(accessToken)
     const verifiedToken = jwtUtils.verifiedToken(accessToken,config.jwt_access_token_secret)
     console.log(verifiedToken)
+    if (typeof verifiedToken === 'string') {
+      throw new Error(verifiedToken)
+    }
+const profile=await userService.getMyprofileFromDB(verifiedToken.id)
+    sendResponse(res, {
+      success: true,
+      StatusCodes: httpsStatus.CREATED,
+      Message: 'user profile fatch successfully',
+      data: { profile },
+    })
     
-
-
-    res.send('get my profile is ok ...')
   })
 
 
