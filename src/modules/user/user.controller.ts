@@ -45,6 +45,11 @@ const createUser = catchAsync(
 const getMyprofile=catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     
+    const cookis = req.cookies;
+    console.log(cookis)
+    const cooke =res.cookie
+
+
     res.send('get my profile is ok ...')
   })
 
