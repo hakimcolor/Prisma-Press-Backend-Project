@@ -4,6 +4,9 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { userService } from './user.service';
 import { catchAsync } from '../../utils/catchAsync';
 import { sendResponse } from '../../utils/sendResponse';
+import jwt from  "jsonwebtoken"
+import config from '../../config';
+import { log } from 'node:console';
 
 // const createUser = async (req: Request, res: Response) => {
 //   try {
@@ -47,6 +50,8 @@ const getMyprofile=catchAsync(
     
     const {accessToken} = req.cookies;
     console.log(accessToken)
+    const verifiedToken = jwt.verify(accessToken, config.jwt_access_token_secret);
+    console.log(verifiedToken)
     const cooke =res.cookie
 
 
