@@ -1,5 +1,5 @@
 import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
-
+//create token 
 const createToken = (
   payload: JwtPayload,
   secret: string,
@@ -8,6 +8,7 @@ const createToken = (
   const token = jwt.sign(payload, secret, { expiresIn } as SignOptions);
   return token;
 };
+//verified token for loging user or profile 
 const verifiedToken = (token: string, secret: string) => {
   try {
     const verifiedToken = jwt.verify(token, secret);
