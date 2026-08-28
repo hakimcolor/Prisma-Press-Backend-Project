@@ -7,6 +7,7 @@ import { sendResponse } from '../../utils/sendResponse';
 import jwt from  "jsonwebtoken"
 import config from '../../config';
 import { log } from 'node:console';
+import { jwtUtils } from '../../utils/jwt';
 
 // const createUser = async (req: Request, res: Response) => {
 //   try {
@@ -50,9 +51,9 @@ const getMyprofile=catchAsync(
     
     const {accessToken} = req.cookies;
     console.log(accessToken)
-    const verifiedToken = jwt.verify(accessToken, config.jwt_access_token_secret);
+    const verifiedToken = jwtUtils.verifiedToken(accessToken,config.jwt_access_token_secret)
     console.log(verifiedToken)
-    const cooke =res.cookie
+    
 
 
     res.send('get my profile is ok ...')
