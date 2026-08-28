@@ -45,8 +45,8 @@ const createUser = catchAsync(
 const getMyprofile=catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     
-    const cookis = req.cookies;
-    console.log(cookis)
+    const {accessToken} = req.cookies;
+    console.log(accessToken)
     const cooke =res.cookie
 
 
