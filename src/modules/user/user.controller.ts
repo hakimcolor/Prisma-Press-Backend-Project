@@ -50,7 +50,7 @@ const getMyprofile=catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     
    
-const profile=await userService.getMyprofileFromDB(verifiedToken.id)
+const profile=await userService.getMyprofileFromDB(req.user?.id as string)
     sendResponse(res, {
       success: true,
       StatusCodes: httpsStatus.CREATED,
