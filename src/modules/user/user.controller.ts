@@ -49,13 +49,7 @@ const createUser = catchAsync(
 const getMyprofile=catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     
-    const {accessToken} = req.cookies;
-    console.log(accessToken)
-    const verifiedToken = jwtUtils.verifiedToken(accessToken,config.jwt_access_token_secret)
-    console.log(verifiedToken)
-    if (typeof verifiedToken === 'string') {
-      throw new Error(verifiedToken)
-    }
+   
 const profile=await userService.getMyprofileFromDB(verifiedToken.id)
     sendResponse(res, {
       success: true,
