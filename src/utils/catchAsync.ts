@@ -8,7 +8,7 @@ import { NextFunction, Request, RequestHandler, Response } from "express";
       await fn(req, res, next);
     } catch (error) {
       res.status(httpsStatus.INTERNAL_SERVER_ERROR).json({
-        success: false,
+        success: true,
         statusbar: httpsStatus.INTERNAL_SERVER_ERROR,
         message: (error as Error).message,
         data: null,
