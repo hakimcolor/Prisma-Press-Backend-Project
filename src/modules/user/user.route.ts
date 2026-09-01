@@ -48,12 +48,12 @@ router.get(
         message: 'forbiden you dont have permiton ',
       });
     }
-    req.user = {
-      email,
-      name,
-      id,
-      role,
-    };
+    // req.user = {
+    //   email,
+    //   name,
+    //   id,
+    //   role,
+    // };
 
     next();
   },
