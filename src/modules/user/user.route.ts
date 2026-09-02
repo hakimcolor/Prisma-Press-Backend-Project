@@ -4,6 +4,7 @@ import { userController } from './user.controller';
 import { jwtUtils } from '../../utils/jwt';
 import config from '../../config';
 import { Role } from '../../../generated/prisma/enums';
+import { catchAsync } from '../../utils/catchAsync';
 
 const router = Router();
 
@@ -22,6 +23,21 @@ declare global{
 
 
 router.post('/register', userController.createUser);
+
+const auth = () => {
+  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.cookies);
+
+    const { accessToken } = req.cookies;
+    console.log(accessToken);
+    const verifiedToken = jwtUtils.verifiedToken(
+      accessToken,
+      config.jwt_access_token_secret
+    );
+  });
+};
+
+
 router.get(
   '/me',
   (req: Request, res: Response, next: NextFunction) => {
