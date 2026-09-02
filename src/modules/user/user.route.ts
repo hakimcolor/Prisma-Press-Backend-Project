@@ -45,22 +45,8 @@ const auth = (...requiredRoles: Role[]) => {
      throw new Error(verifiedToken.message);
    }
     const { email, name, id, role } = verifiedToken.data as JwtPayload;
-  });
-};
 
-
-router.get(
-  '/me',
-  (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.cookies);
-
-    const { accessToken } = req.cookies;
-    console.log(accessToken);
-    
-
-    
-    const requiredFoles = [Role.AUTHOR, Role.USER];
-    if (!requiredFoles.includes(role)) {
+      if (!requiredRoles.includes(role)) {
       return res.status(403).json({
         success: false,
         statusCode: httpsStatus.FORBIDDEN,
@@ -73,6 +59,23 @@ router.get(
       id,
       role,
     };
+  });
+};
+
+
+router.get(
+  '/me',
+  auth(Role.AUTHOR, Role.USER),
+  (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.cookies);
+
+    const { accessToken } = req.cookies;
+    console.log(accessToken);
+    
+
+    
+    const requiredRoles = [Role.AUTHOR, Role.USER];
+  
 
     next();
   },
