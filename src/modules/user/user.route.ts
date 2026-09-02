@@ -55,9 +55,7 @@ router.get(
     );
 
     console.log(verifiedToken);
-    if (typeof verifiedToken === 'string') {
-      throw new Error(verifiedToken);
-    }
+   
 
     const { email, name, id, role } = verifiedToken;
     const requiredFoles = [Role.AUTHOR, Role.USER];
