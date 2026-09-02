@@ -5,6 +5,7 @@ import { jwtUtils } from '../../utils/jwt';
 import config from '../../config';
 import { Role } from '../../../generated/prisma/enums';
 import { catchAsync } from '../../utils/catchAsync';
+import { JwtPayload } from 'jsonwebtoken';
 
 const router = Router();
 
@@ -24,7 +25,7 @@ declare global{
 
 router.post('/register', userController.createUser);
 
-const auth = () => {
+const auth = (...requiredRoles: Role[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.accessToken || req.headers.authorization?.startsWith('Bearer') ? req.headers.authorization?.split(' ')[1] : req.headers.authorization;
     if (!token) {
@@ -34,10 +35,16 @@ const auth = () => {
         message: 'unauthorized access',
       });
     }
-    const verifiedToken = jwtUtils.verifiedToken(
-      token,
-      config.jwt_access_token_secret
-    );
+   const verifiedToken = jwtUtils.verifiedToken(
+     token,
+     config.jwt_access_token_secret
+   );
+
+   console.log(verifiedToken);
+   if (!verifiedToken.success) {
+     throw new Error(verifiedToken.message);
+   }
+    const { email, name, id, role } = verifiedToken.data as JwtPayload;
   });
 };
 
@@ -49,15 +56,9 @@ router.get(
 
     const { accessToken } = req.cookies;
     console.log(accessToken);
-    const verifiedToken = jwtUtils.verifiedToken(
-      accessToken,
-      config.jwt_access_token_secret
-    );
+    
 
-    console.log(verifiedToken);
-   
-
-    const { email, name, id, role } = verifiedToken;
+    
     const requiredFoles = [Role.AUTHOR, Role.USER];
     if (!requiredFoles.includes(role)) {
       return res.status(403).json({
