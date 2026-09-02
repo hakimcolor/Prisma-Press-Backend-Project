@@ -26,7 +26,18 @@ router.post('/register', userController.createUser);
 
 const auth = () => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const token =req.cookies.accessToken||req.headers.authorization
+    const token = req.cookies.accessToken || req.headers.authorization?.startsWith('Bearer') ? req.headers.authorization?.split(' ')[1] : req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        statusCode: httpsStatus.UNAUTHORIZED,
+        message: 'unauthorized access',
+      });
+    }
+    const verifiedToken = jwtUtils.verifiedToken(
+      token,
+      config.jwt_access_token_secret
+    );
   });
 };
 
