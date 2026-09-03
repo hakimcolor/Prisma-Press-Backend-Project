@@ -1,0 +1,41 @@
+const auth = (...requiredRoles: Role[]) => {
+  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.cookies.accessToken ? req.cookies.accessToken
+      :
+      req.headers.authorization?.startsWith('Bearer') ?
+        req.headers.authorization?.split(' ')[1]
+        :
+        req.headers.authorization;
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        statusCode: httpsStatus.UNAUTHORIZED,
+        message: 'unauthorized access',
+      });
+    }
+   const verifiedToken = jwtUtils.verifiedToken(
+     token,
+     config.jwt_access_token_secret
+   );
+
+   console.log(verifiedToken);
+   if (!verifiedToken.success) {
+     throw new Error(verifiedToken.message);
+   }
+    const { email, name, id, role } = verifiedToken.data as JwtPayload;
+
+      if (!requiredRoles.includes(role)) {
+      return res.status(403).json({
+        success: false,
+        statusCode: httpsStatus.FORBIDDEN,
+        message: 'forbiden you dont have permiton ',
+      });
+    }
+    req.user = {
+      email,
+      name,
+      id,
+      role,
+    };
+  });
+};
