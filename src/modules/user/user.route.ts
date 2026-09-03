@@ -6,6 +6,7 @@ import config from '../../config';
 import { Role } from '../../../generated/prisma/enums';
 import { catchAsync } from '../../utils/catchAsync';
 import { JwtPayload } from 'jsonwebtoken';
+import { auth } from '../../Middlewares/auth';
 
 const router = Router();
 
