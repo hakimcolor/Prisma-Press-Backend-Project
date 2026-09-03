@@ -9,18 +9,7 @@ import { JwtPayload } from 'jsonwebtoken';
 
 const router = Router();
 
-declare global{
-  namespace Express{
-    interface Request {
-      user?: {
-        email:string;
-        name:string;
-        id:string;
-        role:Role;
-      };
-    }
-  }
-}
+
 
 
 router.post('/register', userController.createUser);
