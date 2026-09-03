@@ -1,6 +1,10 @@
+import  httpsStatus  from 'http-status-codes';
 import { NextFunction, Request, Response } from "express";
 import { Role } from "../../generated/prisma/enums";
 import { catchAsync } from "../utils/catchAsync";
+import { jwtUtils } from '../utils/jwt';
+import config from '../config';
+import { JwtPayload } from 'jsonwebtoken';
 
 declare global {
   namespace Express {
@@ -55,3 +59,4 @@ const auth = (...requiredRoles: Role[]) => {
     };
   });
 };
+  
