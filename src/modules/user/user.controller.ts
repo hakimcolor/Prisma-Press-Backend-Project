@@ -39,10 +39,7 @@ const createUser = catchAsync(
     //   data: { user },
     // });
     sendResponse(res, {
-      success: true,
-      StatusCodes: httpsStatus.CREATED,
-      Message: 'user registerd successfully',
-      data: { user },
+      
     });
   }
 );
