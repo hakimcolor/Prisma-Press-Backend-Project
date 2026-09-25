@@ -51,7 +51,12 @@ export const auth = (...requiredRoles: Role[]) => {
         message: 'forbiden you dont have permiton ',
       });
     }
-   
+    req.user = {
+      email,
+      name,
+      id,
+      role,
+    };
   });
 };
   
