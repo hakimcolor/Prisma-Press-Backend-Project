@@ -25,5 +25,6 @@ const verifiedToken = (token: string, secret: string) => {
 };
 
 export const jwtUtils = {
- 
+  createToken,
+  verifiedToken,
 };
