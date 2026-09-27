@@ -21,7 +21,7 @@ router.get(
     console.log(req.cookies);
 
     const { accessToken } = req.cookies;
-   
+    console.log(accessToken);
     
 
   
